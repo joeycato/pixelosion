@@ -5,6 +5,18 @@ fireworks effect [demo](https://codepen.io/franksLaboratory/pen/dyYGMwQ) so that
 
 Basically it adds an overlay canvas so that all of the inactive particles can pre-rendered to it once. In effect, this means many multiple draw calls are replaced by a single operation.
 
+If you want just play around with the sample, a live demo is hosted here: https://pixelosion.surge.sh
+
+The default particle size is 2 but you can modify that with a *particleSize* URL param:
+
+```
+Examples:
+https://pixelosion.surge.sh?particleSize=1
+https://pixelosion.surge.sh?particleSize=4
+https://pixelosion.surge.sh?particleSize=8
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
