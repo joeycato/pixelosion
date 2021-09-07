@@ -127,14 +127,13 @@ function runSimulation() {
         ctxOverlayFrame.clearRect(0, 0, imageWidth * IMAGE_SCALING_FACTOR, imageHeight * IMAGE_SCALING_FACTOR);
         for (let y = 0; y < DATA_H; y += PARTICLE_SIZE) {
             for (let x = 0; x < DATA_W; x += PARTICLE_SIZE) {
-                const offset = y * 4 * DATA_W + x * 4;
-                const r = data.data[offset];
-                const g = data.data[offset + 1];
-                const b = data.data[offset + 2];
-                const isBlack = r === 0 && g === 0 && b === 0;
-
-                // Ignore semi-transparent pixels
-                if (data.data[offset + 3] > 128 && !isBlack) {
+                let offset = y * 4 * DATA_W + x * 4;
+                const r = data.data[offset++];
+                const g = data.data[offset++];
+                const b = data.data[offset++];
+                const a = data.data[offset++];
+                // Ignore semi-transparent and black pixels
+                if (a > 128 && !(r === 0 && g === 0 && b === 0)) {
                     const color = `rgb(${r},${g},${b}`;
                     const particle = new Particle(X_OFFSET + x * IMAGE_SCALING_FACTOR, Y_OFFSET + y * IMAGE_SCALING_FACTOR, color);
                     particle.drawOnOverlay();
